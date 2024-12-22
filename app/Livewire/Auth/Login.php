@@ -8,7 +8,8 @@ use Livewire\Component;
 class Login extends Component
 {
     public $email = "admin2@admin.com";
-    public $password = "admin123";
+    public $password = "";
+    public $errorMessage = '';
 
     public function login()
     {
@@ -18,12 +19,16 @@ class Login extends Component
         ]);
 
         if (Auth::attempt($valid)) {
-            $this->redirect(route('home'), true);
+            return redirect()->route('home');
+        } else {
+            $this->errorMessage = 'mohon maaf password atau username ada salah'; // Set error message
         }
     }
 
     public function render()
     {
-        return view('livewire.auth.login');
+        return view('livewire.auth.login', [
+            'errorMessage' => $this->errorMessage,
+        ]);
     }
 }

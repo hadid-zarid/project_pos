@@ -2,10 +2,17 @@
 
 use Illuminate\Support\Facades\Route;
 
+// Landing Page Route
 Route::get('/', function () {
+    return view('landing'); // Make sure to create this view
+});
+
+// Redirect to login if not authenticated
+Route::get('/home', function () {
     return redirect()->route('login');
 });
 
+// Authenticated Routes
 Route::middleware('auth')->group(function(){
     Route::get('/home', \App\Livewire\Home::class)->name('home');
     Route::get('/profile', \App\Livewire\Auth\Profile::class)->name('profile');
@@ -19,6 +26,7 @@ Route::middleware('auth')->group(function(){
     Route::get('/transaksi/{transaksi}/cetak', \App\Livewire\Transaksi\Cetak::class)->name('transaksi.cetak');
 });
 
+// Guest Routes
 Route::middleware('guest')->group(function(){
     Route::get('/login', \App\Livewire\Auth\Login::class)->name('login');
 });
