@@ -2,7 +2,7 @@
     <div class="max-w-sm mx-auto space-y-8">
         <div class="text-center">
             <h3 class="font-bold text-xl">{{ config('app.name') }}</h3>
-            <p>{{ fake()->address() }}</p>
+            
         </div>
 
         <div>
